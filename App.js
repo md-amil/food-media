@@ -1,13 +1,34 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React ,{useState}from 'react';
+import { StyleSheet} from 'react-native';
+import Carousel from './app/components/Carousel';
+import Screen from './app/components/Screen';
+// import Carousel from './app/components/Carousel'
 
 export default function App() {
+  const [imageUris,setImageUris] = useState([{uri:false}])
+  
+  const handleAdd = uri =>{
+      setImageUris([{uri},...imageUris])
+  }
+  
+  const handleRemove = uri =>{
+      const newUri = imageUris.filter(imageUri => imageUri.uri !== uri)
+      console.log(newUri)
+      
+      setImageUris(newUri)
+  }
+  
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Screen>
+          <Carousel 
+              
+              imageUris = {imageUris}
+              onRemoveImage = {handleRemove}
+              onAddImage = {handleAdd}
+          />
+          {/* <Carousel/> */}
+    </Screen>
+    
   );
 }
 
@@ -16,6 +37,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    // justifyContent: 'center',
   },
 });
