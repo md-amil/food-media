@@ -4,7 +4,7 @@ import {MaterialCommunityIcons} from '@expo/vector-icons'
 import * as ImagePicker from 'expo-image-picker'
 
 const windowWidth = Dimensions.get('screen').width;
-export default function ImageInput({ imageUri , onChangeImage}) {
+export default function CarouselItem({ imageUri , onChangeImage}) {
     useEffect( ()=> {
         requestPermission()
     }, [])
@@ -23,13 +23,14 @@ export default function ImageInput({ imageUri , onChangeImage}) {
     const selectImage = async()=>{
         try {
             const { cancelled, uri } = await ImagePicker.launchImageLibraryAsync({
-                mediaTypes:ImagePicker.MediaTypeOptions.Images
+                mediaTypes: ImagePicker.MediaTypeOptions.Images
             })
             if(!cancelled) onChangeImage(uri,false)
         }catch(error){
-          console.log(error)
+            console.log(error)
         }
-      }
+    }
+      
     return (
         <TouchableWithoutFeedback onPress = {handleOnPress}>
             <View style = {styles.container}>

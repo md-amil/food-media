@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, StyleSheet, Dimensions, FlatList, Animated } from 'react-native'
-import ImageInput from './ImageInput'
+import CarouselItem from './CarouselItem'
 
 const { width } = Dimensions.get('window')
 
@@ -24,7 +24,7 @@ const Carousel = ({imageUris = [], onRemoveImage, onAddImage}) => {
                     decelerationRate={"fast"}
                     showsHorizontalScrollIndicator={false}
                     renderItem={({item}) => {
-                        return <ImageInput imageUri={item.uri} onChangeImage = {(uri,isDelete)=>handleChange(uri,isDelete)} />
+                        return <CarouselItem imageUri={item.uri} onChangeImage = {(uri,isDelete)=>handleChange(uri,isDelete)} />
                     }}
                     onScroll={Animated.event(
                         [{ nativeEvent: { contentOffset: { x: scrollX } } }],
